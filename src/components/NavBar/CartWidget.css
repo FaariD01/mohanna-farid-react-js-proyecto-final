@@ -1,0 +1,11 @@
+#cartWidget{
+    display: flex;
+    align-items: center;
+    
+}
+
+
+img{
+    height: 5vh;
+    
+}
