@@ -1,13 +1,26 @@
 import './App.css'
 import NavBar from './components/NavBar/NavBar'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
+
 function App() {
   
 
   return (
     <div>
-      <NavBar />
-      <ItemListContainer mensaje="Hola! Soy el ItemListContainer"/>
+
+    <BrowserRouter> 
+
+      <NavBar />  {/*No va dentro de Routes porque queda fijo, con el footer pasa lo mismo*/}
+      <Routes> 
+      <Route path='/' element={<ItemListContainer/>}/> 
+      <Route path="/category/:idCategory" element={<ItemListContainer mensaje="Hola! Soy el ItemListContainer"/>} />
+      <Route path="/detail/:idProduct" element={<ItemDetailContainer />} />
+      </Routes>
+    </BrowserRouter>
+      
+
     </div>
   )
 }
