@@ -1,8 +1,8 @@
 import Item from "./Item"
-import "./ItemListContainer.css"
+
 const ItemList = ({products}) => {
   return (
-    <div className="ItemList">
+    <div className="itemlist">
             {
 
         products.map((product) => (

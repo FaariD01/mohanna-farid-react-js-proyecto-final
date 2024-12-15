@@ -1,7 +1,8 @@
-#root {
-  
-  margin: 5vh 10vh 0 10vh;
-  text-align: center;
-  
+.container-app {
+  background-color: rgb(28, 28, 28);
+  color: white;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
