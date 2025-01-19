@@ -1,8 +1,17 @@
-# React + Vite
+# Ecommerce "LION TECHNOLOGY" - with React JS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### `Developer - Farid Mohanna`
 
-Currently, two official plugins are available:
+## Descripcion
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`Hice un ecommerce, orientado a hardware de computadoras. Utilice el framework React para realizarlo. Tambien, hice uso de tecnologias como firebase, para la base de datos, react-router-dom, para la navegacion en la pagina, un poco de JS para ciertas funcionalidades y react-toastify y yup para notificaciones y cosas cosmeticas`
+
+## Dependencias
+
+`firebase` - `react-router-dom` - `react-toastify`- `yup`
+
+## Redes sociales y contaco
+
+#### `Instagram: @Farid_mohanna`
+
+#### `Email: faridmohanna.dev@gmail.com`

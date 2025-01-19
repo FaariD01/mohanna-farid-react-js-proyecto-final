@@ -1,11 +1,12 @@
 import { useState, useContext} from "react"
-import { data } from "react-router-dom";
 import FormCheckout from "./FormCheckout.jsx";
 import { CartContext } from "../../context/CartContext.jsx"
 import { Timestamp, collection, addDoc} from "firebase/firestore";
 import db from "../../db/db.js"
 import "./checkout.css"
 import { Link } from "react-router-dom";
+import validateForm from "../../utils/validateForm.js";
+import { toast } from "react-toastify";
 const Checkout = () => {
 
     const [dataForm, setDataForm] = useState({
@@ -34,8 +35,17 @@ const Checkout = () => {
         total: totalPrice(),
         date: Timestamp.fromDate( new Date())
        }
-       await uploadOrder(order)
-       await deleteCart()
+
+       //Primero validamos el formulario
+
+      const response =  await validateForm(dataForm)
+      if(response.status === "success"){
+        await uploadOrder(order)
+        await deleteCart()
+      }else{
+        toast.warning(response.message)
+      }
+      
     }
 
     const uploadOrder = async(newOrder) => {
