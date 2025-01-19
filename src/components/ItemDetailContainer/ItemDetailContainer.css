@@ -3,6 +3,7 @@
     width: 100%;
     min-height: 90vh;
     padding: 100px 0;
+    background-color: whitesmoke;
   }
   .images-detail-container{
     display: flex;

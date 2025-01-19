@@ -3,6 +3,7 @@ import CartWidget from './CartWidget'
 import  {Link, NavLink, useNavigate} from "react-router-dom"
 const NavBar = () => {
   
+  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate()
 
   
@@ -14,7 +15,7 @@ const NavBar = () => {
 
         <Link to="/" className='tituloEmpresa'>
           <img  src="../src/assets/LogoLeon.png"></img>     
-          <h1 className="title">Lion Technology</h1>
+          <h1 className="title">LION TECHNOLOGY</h1>
         </Link>
         <ul className="text-category">
           <NavLink to="/" className={({isActive} )=> isActive ? "category-active" : "category"}>Inicio</NavLink>

@@ -1,8 +1,11 @@
 .container-app {
-  background-color: rgb(28, 28, 28);
+  background-color: rgb(21, 21, 21);
   color: white;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  
 }
+
+
 

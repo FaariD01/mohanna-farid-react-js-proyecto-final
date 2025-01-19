@@ -1,36 +1,60 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import "./ItemListContainer.css";
-import { getProducts } from "../../data/data.js";
 import ItemList from "./ItemList.jsx";
 import { useParams } from "react-router-dom";
+import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import db from "../../db/db.js"
 const ItemListContainer = () => {
 
   const [products, setProducts] = useState([]);
 
   const { idCategory } = useParams()
-    
   
+  const collectionName = collection(db, "products")
 
-  useEffect(() => {
-      getProducts()
-        .then((data)=>{
-          if(idCategory){
-            //Filtrar data por ese valor
-            const filterProducts = data.filter((product) => product.category === idCategory)
-            setProducts(filterProducts)
-          }else{ 
-            //Guardar toda la lista de los productos
-            setProducts(data);
-          }
+  const getProducts = async() => { 
+
+      try{
+        const dataDb = await getDocs(collectionName)
+        
+        const data = dataDb.docs.map((productDb) => {
+          
+          return {id: productDb.id, ...productDb.data() }
         })
-        .catch((error) => {
-          console.error(error);
-        })
-        .finally(() => {
-          console.log("Termino la promesa")
-        }) 
-      },
-  [idCategory])
+        
+        setProducts(data)
+      
+
+      }catch(error){
+          console.log(error)
+      }
+
+  }
+
+  const getProductsByCategory = async() => {
+    try{
+
+      const q = query( collectionName , where("category", "==", idCategory) )      
+      const dataDb = await getDocs(q)
+      
+      const data = dataDb.docs.map((productDb) => {
+        return {id: productDb.id, ...productDb.data() }
+      })
+      setProducts(data)
+    }catch(error){
+    console.log(error)
+}
+  }
+
+useEffect(() =>{
+
+  if(idCategory){
+    getProductsByCategory()
+  }else{
+    getProducts()
+  }
+}, [idCategory])
 
   
       return (

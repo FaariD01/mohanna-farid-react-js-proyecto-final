@@ -1,3 +1,7 @@
+import db from "../db/db.js";
+import { collection, addDoc } from "firebase/firestore"
+
+
 const products = [
 
     {
@@ -53,11 +57,11 @@ const products = [
     },
     {
       id: "MOUSE_RAZER_1",
-      name: "Mouse Logitech",
+      name: "Mouse Razer",
       description: "Mouse Razer Viper V2 PRO Wireless 2.4Ghz Multi-Dispositivo Black 30K DPI 58g",
       image: "/img/mouse_razer_viper.jpg", // "/img/nombreImagen.jpg" -> si esta en local
       price: 130,
-      stock: 11,
+      stock: 7,
       category: "mouse",
       
     }
@@ -66,14 +70,17 @@ const products = [
 
   ];
 
-  const getProducts = () => {
-    return new Promise( (resolve, reject) => {
-      //simulamos un retraso de red de 2 segs
-      setTimeout(() => {
-        resolve(products)
-      }, 500); 
-      
-      })
-  }
+const seedProducts = async() => {
+  try{
+    const productsRef = collection(db, "products")
+    products.map( async( { id, ...dataProduct } ) => {
+      await addDoc(productsRef, dataProduct)
+    })
 
-  export { getProducts }
+    console.log("Productos subidos correctamente!")
+  }catch(error){
+    console.log(error)
+  }
+}
+
+seedProducts()

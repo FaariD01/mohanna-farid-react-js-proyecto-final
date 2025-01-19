@@ -1,8 +1,8 @@
-#cartWidget{
+.cartWidget{
     display: flex;
     align-items: center;
-    
 }
+
 
 
 .img-cardwidget{

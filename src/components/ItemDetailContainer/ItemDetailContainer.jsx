@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
-import { getProducts } from "../../data/data.js"
+import {doc, getDoc} from "firebase/firestore"
+import db from "../../db/db.js"
 import ItemDetail from "./ItemDetail.jsx"
 import { useParams } from "react-router-dom"
 import "./ItemDetailContainer.css"
@@ -10,15 +11,23 @@ const ItemDetailContainer = () => {
 
     const { idProduct } = useParams()  //Desestrucuramos
     
+    const getProduct = async () =>{
+        try{
+            const docRef = doc(db, "products" , idProduct)
+            const dataDb = await getDoc(docRef)
+            
+            const data =  {id : dataDb.id , ...dataDb.data()}
+
+           setProduct(data);
+        }catch(error){
+            console.log(error)
+        }
+    }
+
 
     useEffect(() =>{
 
-        getProducts()
-        .then((data) => {
-            const productFind = data.find((dataProduct) => dataProduct.id === idProduct)  // .find devuelve un objeto si usamos .filter devuelve un array y tirar error.
-            setProduct(productFind)
-        })
-
+        getProduct();
 
     },[idProduct]) //Cambia cuando cambia el id
 
