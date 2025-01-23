@@ -2,16 +2,18 @@ import { useState, useEffect } from "react"
 import {doc, getDoc} from "firebase/firestore"
 import db from "../../db/db.js"
 import ItemDetail from "./ItemDetail.jsx"
-import { useParams } from "react-router-dom"
+import { Link, NavLink, useParams } from "react-router-dom"
 import "./ItemDetailContainer.css"
+import { toast } from "react-toastify"
 const ItemDetailContainer = () => {
   
     const [product, setProduct] = useState({})
   
 
-    const { idProduct } = useParams()  //Desestrucuramos
+    const { idProduct } = useParams()  // Desestrucuramos
     
     const getProduct = async () =>{
+        
         try{
             const docRef = doc(db, "products" , idProduct)
             const dataDb = await getDoc(docRef)
@@ -25,10 +27,9 @@ const ItemDetailContainer = () => {
     }
 
 
+    
     useEffect(() =>{
-
         getProduct();
-
     },[idProduct]) //Cambia cuando cambia el id
 
     return (
